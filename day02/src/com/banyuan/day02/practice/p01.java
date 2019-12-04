@@ -18,6 +18,6 @@ public class p01 {
             diff = diff - a[i] ;}
         }
 
-        System.out.printf("和是%d,差是%d",sum,diff);
+        System.out.printf(1+2+ "aa"+3);
     }
 }

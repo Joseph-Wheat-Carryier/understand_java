@@ -15,5 +15,6 @@ public class p03 {
         b=a^b;
         a=a^b;
         System.out.printf("a:%d,b:%d",a,b);
+
     }
 }

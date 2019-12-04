@@ -13,8 +13,8 @@ public class TestClassRoom {
         }
 
         private static String getRandomName(){
-            char name1[] = new char[2];
-            char name2[] = new char[3];
+            char [] name1 = new char[2];
+            char [] name2 = new char[3];
 
             name1[0] = RandomString.getRandomChar();
             name1[1] = RandomString.getRandomChar();

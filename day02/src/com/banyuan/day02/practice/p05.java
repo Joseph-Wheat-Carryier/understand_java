@@ -49,7 +49,7 @@ public class p05 {
         System.out.println("请输入数:");
         ArrayList<Integer> arr = new ArrayList<>();
         Scanner scan = new Scanner(System.in);
-        int num=0;
+        int num = 0;
         while ((num = scan.nextInt()) != 0) {
             System.out.println("请输入数:");
             arr.add(num);
@@ -57,14 +57,13 @@ public class p05 {
         return arr;
     }
 
-    private static void getMaxNum() {
+    private void getMaxNum() {
         int min = 0;
         int max = 0;
 
-        ArrayList <Integer> arr=constPutinNumbers();
-        min=arr.get(0);
-        max=min;
-
+        ArrayList<Integer> arr = constPutinNumbers();
+        min = arr.get(0);
+        max = min;
 
 
         for (
@@ -79,12 +78,12 @@ public class p05 {
         System.out.printf("最大的数是%d,最小的数是%d", max, min);
     }
 
-    static void getMultiple56(){
+    static void getMultiple56() {
         ArrayList<Integer> result = new ArrayList<>();
         ArrayList<Integer> arr = new ArrayList<>();
         arr = constPutinNumbers();
-        for(int temp:arr){
-            if(temp%5==0^temp%6==0){
+        for (int temp : arr) {
+            if (temp % 5 == 0 ^ temp % 6 == 0) {
                 result.add(temp);
             }
         }
@@ -92,56 +91,56 @@ public class p05 {
         System.out.print(result.toString());
     }
 
-    static void isLeapYear(){
+    static void isLeapYear() {
         Scanner scan = new Scanner(System.in);
         int year = scan.nextInt();
-        if((year%4==0&&year%100!=0)||year%400==0){
+        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
             System.out.println("闰年");
-        }else{
+        } else {
             System.out.println("非闰年");
         }
     }
 
-    static void guessNum(){
-        int [] numbers = new int [30];
+    static void guessNum() {
+        int[] numbers = new int[30];
         Scanner scan = new Scanner(System.in);
         System.out.println("请猜一个数");
         int count = 0;
         int guess = scan.nextInt();
-        for(int i=0;i<30;i++){
-            numbers[i] =(int)(30*Math.random());
+        for (int i = 0; i < 30; i++) {
+            numbers[i] = (int) (30 * Math.random());
         }
 
-        for(int temp:numbers){
-            if(guess==temp){
+        for (int temp : numbers) {
+            if (guess == temp) {
                 count++;
             }
         }
 
-        System.out.printf("共有%d个%d",count,guess);
+        System.out.printf("共有%d个%d", count, guess);
     }
 
 
-    static int reverseNum(int num){
+    private int reverseNum(int num) {
         ArrayList<Integer> arr = new ArrayList<>();
-        int result=0;
-        if(num<=0){
+        int result = 0;
+        if (num <= 0) {
             System.out.println("请输入一个正整数");
         }
 
-        while(num!=0){
-            arr.add(num%10);
-            num/=10;
+        while (num != 0) {
+            arr.add(num % 10);
+            num /= 10;
         }
-        for(int i=0;i<arr.size();i++){
-            result+=arr.get(i)*Math.pow(10,(arr.size()-1-i));
+        for (int i = 0; i < arr.size(); i++) {
+            result += arr.get(i) * Math.pow(10, (arr.size() - 1 - i));
         }
 
-        System.out.println(arr.size());
         return result;
     }
 
     public static void main(String[] args) {
-        System.out.print(reverseNum(1234556));
+        p05 p = new p05();
+        System.out.print(p.reverseNum(1234556));
     }
 }

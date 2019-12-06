@@ -43,5 +43,6 @@ public class Test {
         for(Employee e:tiffny.employees){
             System.out.println(e.toString());
         }
+        System.out.println("程序结束");
     }
 }

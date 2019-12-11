@@ -1,15 +1,18 @@
-import java.util.*;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Spliterator;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class MyCollection implements Collection {
+public class MyCollection <E> implements Collection<E> {
     private int size = 0;
     private Object[] collection = new Object[size];
 
 
-    public Object get(int index) {
-        return this.collection[index];
+    public E get(int index) {
+        return (E)this.collection[index];
     }
 
 
@@ -81,20 +84,20 @@ public class MyCollection implements Collection {
     }
 
     @Override
-    public Object[] toArray() {
-        return this.collection;
+    public E[] toArray() {
+        return (E[]) this.collection;
     }
 
     @Override
-    public Object[] toArray(Object[] a) {
+    public E[] toArray(Object[] a) {
         Object[] temp = new Object[this.size + a.length];
         if (temp.length - this.size >= 0)
             System.arraycopy(a, 0, temp, this.size, temp.length - this.size);
-        return temp;
+        return (E[]) temp;
     }
 
     @Override
-    public boolean add(Object o) {
+    public boolean add(E o) {
         Object[] temp = new Object[++size];
         System.arraycopy(collection, 0, temp, 0, size - 1);
 
@@ -107,14 +110,12 @@ public class MyCollection implements Collection {
     public boolean remove(Object o) {
         for (int i = 0; i < size; i++) {
             if (collection[i].equals(o)) {
-                for (int j = i; j < size - 1; j++) {
-                    Object temp = collection[j];
-                    collection[j] = collection[j + i];
-                    collection[j + 1] = temp;
+                for (int j = i; j < size-1; j++) {
+                    collection[j] = collection[j + 1];
                 }
-                Object[] collectionTemp = new Object[--size];
-                System.arraycopy(collection, 0, collectionTemp, 0, size);
-                collection = collectionTemp;
+                Object[] collectionEemp = new Object[--size];
+                System.arraycopy(collection, 0, collectionEemp, 0, size);
+                collection = collectionEemp;
                 return true;
             }
         }
@@ -155,7 +156,7 @@ public class MyCollection implements Collection {
     @Override
     public boolean addAll(Collection c) {
         for (Object o : c) {
-            this.add(o);
+            this.add((E) o);
         }
         return true;
     }
@@ -183,12 +184,21 @@ public class MyCollection implements Collection {
             }
         }
 
+        for(int i=0;i<temp.size;i++){
+            for(int j=i+1;j<temp.size;j++){
+                if(temp.get(i).equals(temp.get(j))){
+                    temp.remove(temp.get(j));
+                }
+            }
+        }
+
         collection = temp.toArray();
+        size = temp.size;
         return true;
     }
 
     @Override
     public void clear() {
-        collection=new Object[]{};
+        collection=new Object[0];
     }
 }

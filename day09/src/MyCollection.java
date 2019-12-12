@@ -7,9 +7,11 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class MyCollection <E> implements Collection<E> {
+
     private int size = 0;
     private Object[] collection = new Object[size];
 
+    @SuppressWarnings("unchecked")
 
     public E get(int index) {
         return (E)this.collection[index];
@@ -84,11 +86,13 @@ public class MyCollection <E> implements Collection<E> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public E[] toArray() {
         return (E[]) this.collection;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public E[] toArray(Object[] a) {
         Object[] temp = new Object[this.size + a.length];
         if (temp.length - this.size >= 0)
@@ -110,9 +114,7 @@ public class MyCollection <E> implements Collection<E> {
     public boolean remove(Object o) {
         for (int i = 0; i < size; i++) {
             if (collection[i].equals(o)) {
-                for (int j = i; j < size-1; j++) {
-                    collection[j] = collection[j + 1];
-                }
+                if (size - 1 - i >= 0) System.arraycopy(collection, i + 1, collection, i, size - 1 - i);
                 Object[] collectionEemp = new Object[--size];
                 System.arraycopy(collection, 0, collectionEemp, 0, size);
                 collection = collectionEemp;

@@ -11,7 +11,7 @@ public class MyCollection <E> implements Collection<E> {
     private int size = 0;
     private Object[] collection = new Object[size];
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("all")
 
     public E get(int index) {
         return (E)this.collection[index];
@@ -24,16 +24,19 @@ public class MyCollection <E> implements Collection<E> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Spliterator spliterator() {
         return null;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Stream stream() {
         return null;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Stream parallelStream() {
         return null;
     }
@@ -65,6 +68,7 @@ public class MyCollection <E> implements Collection<E> {
 
 
     @Override
+    @SuppressWarnings("unchecked")
     public Iterator iterator() {
         return new Iterator() {
             int ct = -1;
@@ -156,6 +160,7 @@ public class MyCollection <E> implements Collection<E> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean addAll(Collection c) {
         for (Object o : c) {
             this.add((E) o);
@@ -175,6 +180,7 @@ public class MyCollection <E> implements Collection<E> {
         return true;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public boolean retainAll(Collection c) {
         MyCollection temp =new MyCollection();

@@ -15,31 +15,28 @@ public class HappyCinema {
         Customer customer5 = new Customer("Ez", happyCinema, "13,14,15");
         Customer customer6 = new Customer("潘森", happyCinema, "16,17,18");
         Customer customer7 = new Customer("螳螂", happyCinema, "19,20,21");
+        Customer customer8 = new Customer("船长",happyCinema,"19,20");
 
         Thread t1 = new Thread(customer1);
-        Thread t7 = new Thread(customer7);
         Thread t2 = new Thread(customer2);
         Thread t3 = new Thread(customer3);
         Thread t4 = new Thread(customer4);
         Thread t5 = new Thread(customer5);
         Thread t6 = new Thread(customer6);
+        Thread t7 = new Thread(customer7);
+        Thread t8 = new Thread(customer8);
 
-        t1.setPriority(10);
-        t2.setPriority(10);
-        t3.setPriority(10);
-        t4.setPriority(10);
-        t5.setPriority(10);
-        t6.setPriority(10);
-        t7.setPriority(1);
+
+
 
         t1.start();
-        t7.start();
         t2.start();
         t3.start();
         t4.start();
         t5.start();
         t6.start();
-
+        t7.start();
+        t8.start();
     }
 
     public static class Cinema {

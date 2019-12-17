@@ -8,13 +8,13 @@ import java.util.Set;
 public class HappyCinema {
     public static void main(String[] args) throws InterruptedException {
         Cinema happyCinema = new Cinema(20);
-        Customer customer1 = new Customer("居柳明", happyCinema, "1,2,3");
-        Customer customer2 = new Customer("潘 婷", happyCinema, "6,4,5");
-        Customer customer3 = new Customer("潘 婷", happyCinema, "4,8,9");
-        Customer customer4 = new Customer("潘 婷", happyCinema, "14,11,12");
-        Customer customer5 = new Customer("潘 婷", happyCinema, "17,14,15");
-        Customer customer6 = new Customer("潘 婷", happyCinema, "18,17,18");
-        Customer customer7 = new Customer("潘 婷", happyCinema, "11,20,21");
+        Customer customer1 = new Customer("小李", happyCinema, "1,2,3");
+        Customer customer2 = new Customer("小王", happyCinema, "6,4,5");
+        Customer customer3 = new Customer("小张", happyCinema, "7,8,9");
+        Customer customer4 = new Customer("压缩", happyCinema, "10,11,12");
+        Customer customer5 = new Customer("Ez", happyCinema, "13,14,15");
+        Customer customer6 = new Customer("潘森", happyCinema, "16,17,18");
+        Customer customer7 = new Customer("螳螂", happyCinema, "19,20,21");
 
         Thread t1 = new Thread(customer1);
         Thread t7 = new Thread(customer7);
@@ -33,12 +33,12 @@ public class HappyCinema {
         t7.setPriority(1);
 
         t1.start();
+        t7.start();
         t2.start();
         t3.start();
         t4.start();
         t5.start();
         t6.start();
-        t7.start();
 
     }
 
@@ -78,13 +78,19 @@ public class HappyCinema {
 
         @Override
         public void run() {
+            try {
+                Thread.sleep((int)(Math.random()*1000));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             synchronized (cinema) {
-                boolean flag = orderTickets(cinema, needsSeat);
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                boolean flag = orderTickets(cinema, needsSeat);
+
                 if (flag) {
                     System.out.printf("%s,购票成功,位置%s,祝您观影愉快\n", this.name, needsSeat.toString());
                     System.out.printf("剩余座位:%s\n", cinema.seats.toString());
